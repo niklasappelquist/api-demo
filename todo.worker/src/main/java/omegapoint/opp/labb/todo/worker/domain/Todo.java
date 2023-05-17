@@ -5,40 +5,45 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Todo {
-    private String title;
-    private boolean completed;
-    private UUID id;
+  private String title;
+  private boolean completed;
 
-    private Instant deadLine;
+  public Instant getDeadLine() {
+    return deadLine;
+  }
 
-    public Todo(String title, boolean completed, UUID id) {
-        this.title = title;
-        this.completed = completed;
-        this.id = id;
-        this.deadLine = Instant.now().plusSeconds(14*24*3600);
-    }
+  private UUID id;
 
-    public String getTitle() {
-        return title;
-    }
+  private Instant deadLine;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public Todo(String title, boolean completed, UUID id) {
+    this.title = title;
+    this.completed = completed;
+    this.id = id;
+    this.deadLine = Instant.now().plusSeconds(14 * 24 * 3600);
+  }
 
-    public boolean isCompleted() {
-        return completed;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public UUID getId() {
-        return id;
-    }
+  public boolean isCompleted() {
+    return completed;
+  }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+  public void setCompleted(boolean completed) {
+    this.completed = completed;
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
 }
