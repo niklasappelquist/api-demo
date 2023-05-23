@@ -8,3 +8,10 @@ spring:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console.enabled: true
+
+  rabbitmq:
+    username: guest
+    password: guest
+    hostname: localhost
+    port: 5672
+
