@@ -7,8 +7,8 @@ services:
       - "5672:5672"
       - "15672:15672"
     networks:
-     - todo
-     
+      - todo
+
   todo-app:
     image: niklasappelquist/api-demo:latest
     mem_limit: 700m
@@ -18,17 +18,17 @@ services:
       - todo
     # environment:
     #   MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-  
+
   todo-worker:
     image: niklasappelquist/api-worker:latest
     mem_limit: 700m
     ports:
-      - "8090:8090"
+      - "8090:8080"
     networks:
       - todo
-    # environment:
+      # environment:
       # MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-    
-    
+
+
 networks:
   todo:

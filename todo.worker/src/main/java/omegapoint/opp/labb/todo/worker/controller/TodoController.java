@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,5 +28,11 @@ public class TodoController {
     } catch (IOException e) {
       return ResponseEntity.internalServerError().build();
     }
+  }
+  @RabbitListener(queues = "spring-boot")
+  public void listen(String in){
+    System.out.println("**********************************");
+    System.out.println(in);
+    System.out.println("**********************************");
   }
 }
