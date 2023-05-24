@@ -9,9 +9,3 @@ spring:
   h2:
     console.enabled: true
 
-  rabbitmq:
-    username: guest
-    password: guest
-    hostname: localhost
-    port: 5672
-

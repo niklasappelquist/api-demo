@@ -1,11 +1,10 @@
 package omegapoint.opp.labb.apidemo.controller;
 
 import omegapoint.opp.labb.apidemo.repository.TodoRepository;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import omegapoint.opp.labb.apidemo.repository.RabbitSender;
 
-import javax.sound.midi.Receiver;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,18 +13,18 @@ import java.util.UUID;
 public class TodoController {
 
   private TodoRepository todoRepository;
-  private RabbitTemplate rabbitTemplate;
+  private RabbitSender sender;
 
-  public TodoController(TodoRepository todoRepository, RabbitTemplate rabbitTemplate) {
+  public TodoController(TodoRepository todoRepository, RabbitSender sender) {
     this.todoRepository = todoRepository;
-    this.rabbitTemplate = rabbitTemplate;
+    this.sender = sender;
   }
 
   @GetMapping("/")
   public ResponseEntity<List<Todo>> GetTodos() {
     try {
       var todos = todoRepository.findAll();
-      rabbitTemplate.convertAndSend("spring-boot", "Great success!");
+      sender.send("Hello From Todo-app");
       return ResponseEntity.ok(todos);
     } catch (Exception e) {
       System.out.println(e);

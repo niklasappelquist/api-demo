@@ -16,8 +16,14 @@ services:
       - "8080:8080"
     networks:
       - todo
-    # environment:
-    #   MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    depends_on:
+      - rabbitmq
+    environment:
+      # MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
 
   todo-worker:
     image: niklasappelquist/api-worker:latest
@@ -26,9 +32,13 @@ services:
       - "8090:8080"
     networks:
       - todo
-      # environment:
-      # MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
+    depends_on:
+      - rabbitmq
+    environment:
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
 
 networks:
   todo:
